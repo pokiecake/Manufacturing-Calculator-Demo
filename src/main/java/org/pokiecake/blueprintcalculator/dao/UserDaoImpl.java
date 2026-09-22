@@ -14,9 +14,14 @@ public class UserDaoImpl implements UserDao {
         this.entityManager = entityManager;
     }
 
+
+    public User findUserById(int id) {
+        return entityManager.find(User.class, id);
+    }
+
     @Override
     public User findUserByUsername(String username) {
-        TypedQuery<User> query = entityManager.createQuery("from Users where username=:name", User.class);
+        TypedQuery<User> query = entityManager.createQuery("from User where username=:name", User.class);
 
         return query.getSingleResult();
     }
