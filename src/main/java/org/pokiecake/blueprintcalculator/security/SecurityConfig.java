@@ -24,8 +24,11 @@ public class SecurityConfig {
     }
 
     // defines the DAO authentication provider as a bean
+    @Bean
     public DaoAuthenticationProvider authenticationProvider(UserService userService) {
-
+        DaoAuthenticationProvider auth = new DaoAuthenticationProvider(userService);
+        auth.setPasswordEncoder(passwordEncoder());
+        return auth;
     }
 
     @Bean
