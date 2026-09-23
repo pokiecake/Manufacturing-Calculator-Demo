@@ -50,15 +50,17 @@ public class SecurityConfig {
 //                        .requestMatchers(HttpMethod.POST, "/api/**").permitAll()
 //                        .requestMatchers(HttpMethod.DELETE, "/api/**").permitAll()
                                 .requestMatchers((HttpMethod) null, "/**").permitAll()
-
-        )
+                )
                 .formLogin(form -> form
-                        .loginPage("/")
-                        .loginProcessingUrl("/")
+                        .loginPage("/showMyLoginPage")
+                        .loginProcessingUrl("/authenticateTheUser")
                         .successHandler(customAuthenticationSuccessHandler)
                         .permitAll()
                 )
-                .logout(logout -> logout.permitAll());
+                .logout(logout -> logout.permitAll())
+                .exceptionHandling(configurer ->
+                        configurer.accessDeniedPage("/access-denied")
+                );
         http.httpBasic(Customizer.withDefaults());
 
         //TODO Remove when finished and figured out how to do csrf tokens

@@ -1,6 +1,7 @@
 package org.pokiecake.blueprintcalculator.dao;
 
-import javax.management.relation.Role;
+import org.pokiecake.blueprintcalculator.entity.Role;
+
 import java.util.List;
 
 public interface RoleDao {
