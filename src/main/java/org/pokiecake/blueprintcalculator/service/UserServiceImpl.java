@@ -32,6 +32,8 @@ public class UserServiceImpl implements UserService {
         return userDao.findUserByUsername(userName);
     }
 
+
+    
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         User user = userDao.findUserByUsername(username);

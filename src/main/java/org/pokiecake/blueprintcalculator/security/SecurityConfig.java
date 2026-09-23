@@ -41,15 +41,12 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http,
                                                    AuthenticationSuccessHandler customAuthenticationSuccessHandler) {
         http.authorizeHttpRequests(configurer ->
-                        configurer.requestMatchers(HttpMethod.GET, "/api/groups/winning").hasRole("EMPLOYEE")
-//                        .requestMatchers(HttpMethod.GET, "/api/groups/test").hasRole("EMPLOYEE")
-//                        .requestMatchers(HttpMethod.GET, "/api/members/test").hasRole("EMPLOYEE")
-//                        .requestMatchers(HttpMethod.GET, "/api/members/member/**").hasRole("EMPLOYEE")
+                                configurer
+                                        .requestMatchers(HttpMethod.GET, "/home").hasRole("EMPLOYEE")
                                 //!! Only for debugging purposes
 //                        .requestMatchers(HttpMethod.GET, "/api/**").permitAll()
 //                        .requestMatchers(HttpMethod.POST, "/api/**").permitAll()
 //                        .requestMatchers(HttpMethod.DELETE, "/api/**").permitAll()
-                                .requestMatchers((HttpMethod) null, "/**").permitAll()
                 )
                 .formLogin(form -> form
                         .loginPage("/showMyLoginPage")
@@ -57,11 +54,10 @@ public class SecurityConfig {
                         .successHandler(customAuthenticationSuccessHandler)
                         .permitAll()
                 )
-                .logout(logout -> logout.permitAll())
-                .exceptionHandling(configurer ->
-                        configurer.accessDeniedPage("/access-denied")
-                );
-        http.httpBasic(Customizer.withDefaults());
+                .logout(logout -> logout.permitAll());
+//                .exceptionHandling(configurer ->
+//                        configurer.accessDeniedPage("/access-denied")
+//                );
 
         //TODO Remove when finished and figured out how to do csrf tokens
         http.csrf(csrf -> csrf.disable());

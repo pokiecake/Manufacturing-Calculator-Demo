@@ -10,4 +10,9 @@ public class MainController {
     public String getHome() {
         return "home";
     }
+
+    @GetMapping("/managers")
+    public String getManagerHome() {
+        return "manager-home";
+    }
 }
