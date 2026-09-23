@@ -1,0 +1,16 @@
+Authentication & Security
+- restrict endpoints
+
+Registration Form
+
+Blueprint Algorithm
+
+Select Blueprints page
+
+Show cost page
+
+Add blueprint page
+
+Add Parts page
+
+Admin Page

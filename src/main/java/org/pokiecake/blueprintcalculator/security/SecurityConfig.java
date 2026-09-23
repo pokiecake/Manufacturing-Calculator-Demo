@@ -11,6 +11,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.provisioning.JdbcUserDetailsManager;
 import org.springframework.security.provisioning.UserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 
 import javax.sql.DataSource;
 
@@ -37,7 +38,8 @@ public class SecurityConfig {
     }
 
     @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity http) {
+    public SecurityFilterChain securityFilterChain(HttpSecurity http,
+                                                   AuthenticationSuccessHandler customAuthenticationSuccessHandler) {
         http.authorizeHttpRequests(configurer ->
                         configurer.requestMatchers(HttpMethod.GET, "/api/groups/winning").hasRole("EMPLOYEE")
 //                        .requestMatchers(HttpMethod.GET, "/api/groups/test").hasRole("EMPLOYEE")
@@ -48,7 +50,15 @@ public class SecurityConfig {
 //                        .requestMatchers(HttpMethod.POST, "/api/**").permitAll()
 //                        .requestMatchers(HttpMethod.DELETE, "/api/**").permitAll()
                                 .requestMatchers((HttpMethod) null, "/**").permitAll()
-        );
+
+        )
+                .formLogin(form -> form
+                        .loginPage("/")
+                        .loginProcessingUrl("/")
+                        .successHandler(customAuthenticationSuccessHandler)
+                        .permitAll()
+                )
+                .logout(logout -> logout.permitAll());
         http.httpBasic(Customizer.withDefaults());
 
         //TODO Remove when finished and figured out how to do csrf tokens
