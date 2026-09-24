@@ -5,7 +5,6 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
-import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.provisioning.JdbcUserDetailsManager;
@@ -43,6 +42,7 @@ public class SecurityConfig {
         http.authorizeHttpRequests(configurer ->
                                 configurer
                                         .requestMatchers(HttpMethod.GET, "/home").hasRole("EMPLOYEE")
+                                        .requestMatchers(HttpMethod.GET, "/parts").hasRole("EMPLOYEE")
                                         .requestMatchers(HttpMethod.GET, "/managers").hasRole("MANAGER")
                                 //!! Only for debugging purposes
 //                        .requestMatchers(HttpMethod.GET, "/api/**").permitAll()
@@ -55,13 +55,10 @@ public class SecurityConfig {
                         .successHandler(customAuthenticationSuccessHandler)
                         .permitAll()
                 )
-                .logout(logout -> logout.permitAll());
-//                .exceptionHandling(configurer ->
-//                        configurer.accessDeniedPage("/access-denied")
-//                );
-
-        //TODO Remove when finished and figured out how to do csrf tokens
-        http.csrf(csrf -> csrf.disable());
+                .logout(logout -> logout.permitAll())
+                .exceptionHandling(configurer ->
+                        configurer.accessDeniedPage("/access-denied")
+                );
 
         return http.build();
     }

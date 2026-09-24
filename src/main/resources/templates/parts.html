@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Parts</title>
+</head>
+<body>
+    <table>
+        <thead>
+            <tr>
+                <th>Part Id</th>
+                <th>Part Name</th>
+                <th>Company</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="part : ${parts}">
+                <td th:text="${part.getPartId()}"></td>
+                <td th:text="${part.getPartName()}"></td>
+                <td th:text="${part.getCompany()}"></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <form action="#" th:action="@{/home}">
+        <button>Back</button>
+    </form>
+
+</body>
+</html>
