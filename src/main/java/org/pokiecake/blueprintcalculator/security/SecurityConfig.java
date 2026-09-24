@@ -43,6 +43,7 @@ public class SecurityConfig {
         http.authorizeHttpRequests(configurer ->
                                 configurer
                                         .requestMatchers(HttpMethod.GET, "/home").hasRole("EMPLOYEE")
+                                        .requestMatchers(HttpMethod.GET, "/managers").hasRole("MANAGER")
                                 //!! Only for debugging purposes
 //                        .requestMatchers(HttpMethod.GET, "/api/**").permitAll()
 //                        .requestMatchers(HttpMethod.POST, "/api/**").permitAll()

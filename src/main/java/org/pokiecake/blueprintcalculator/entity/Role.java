@@ -5,10 +5,13 @@ import jakarta.persistence.*;
 @Entity
 @Table(name="roles")
 public class Role {
+    // NOT JPA compliant, use an embedded id or id class
+    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="user_id")
     private int user_id;
 
+    @Id
     @Column(name="name")
     private String name;
 
@@ -19,14 +22,6 @@ public class Role {
     public Role(int user_id, String name) {
         this.user_id = user_id;
         this.name = name;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public int getUser_id() {

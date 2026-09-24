@@ -15,4 +15,4 @@ Add Parts page
 
 Admin Page
 
-Fix role to work with an id?
+Refactor Role to use an embedded id or id class
