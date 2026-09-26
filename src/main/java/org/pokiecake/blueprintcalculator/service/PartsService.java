@@ -11,4 +11,6 @@ public interface PartsService {
     List<Part> getAllPartsFrom(String companyName);
 
     Part getPartById(int id);
+
+    Part getCheapestParts();
 }

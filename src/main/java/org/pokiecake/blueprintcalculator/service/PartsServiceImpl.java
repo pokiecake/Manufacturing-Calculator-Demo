@@ -28,4 +28,17 @@ public class PartsServiceImpl implements PartsService{
     public Part getPartById(int id) {
         return partDao.getPartById(id);
     }
+
+    @Override
+    public Part getCheapestParts() {
+        List<Part> allParts = getAllParts();
+
+        Part cheapestPart = allParts.getFirst();
+        for (Part part : allParts) {
+
+        }
+
+
+        return null;
+    }
 }

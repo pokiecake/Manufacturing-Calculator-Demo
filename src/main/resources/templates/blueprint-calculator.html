@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+  <form>
+    <!-- Load Blueprints -->
+    <label>
+      Select Blueprint:
+      <select>
+        <!-- th:each-->
+        <option>option</option>
+      </select>
+    </label>
+
+    <!-- Load Parts with conditions -->
+
+
+    <label>
+      Max Price
+      <input type="number" step="0.01" />
+    </label>
+  </form>
+  <form action="#" th:action="@{/home}" method="GET">
+    <button>Back</button>
+  </form>
+</body>
+</html>

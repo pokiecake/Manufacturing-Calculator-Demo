@@ -11,8 +11,6 @@ Show cost page
 
 Add blueprint page
 
-Add Parts page
-
 Admin Page
 
 Make login failed page

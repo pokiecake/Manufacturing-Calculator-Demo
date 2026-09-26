@@ -31,4 +31,6 @@ public class PartDaoImpl implements PartDao {
         return entityManager.find(Part.class, id);
     }
 
+
+
 }
